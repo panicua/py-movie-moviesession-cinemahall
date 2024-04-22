@@ -35,6 +35,12 @@ def update_movie_session(
         movie_id: int = None,
         cinema_hall_id: int = None,
 ) -> None:
+    if all(
+            argument is None
+            for argument in (show_time, movie_id, cinema_hall_id)
+    ):
+        return
+
     session_to_update = MovieSession.objects.get(id=session_id)
 
     if show_time is not None:
